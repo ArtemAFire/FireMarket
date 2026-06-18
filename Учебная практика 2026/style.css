@@ -1,0 +1,407 @@
+body {
+    min-height: 100vh;
+    background: #121212;
+    color: #eaeaea;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar button {
+    padding: 8px 14px;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(
+        to bottom,
+        #000000,
+        #8c3a00
+    );
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: orange;
+    color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}
+
+button {
+    background: linear-gradient(145deg, #111, #1a1a1a);
+    color: #ff7a00;
+
+    border: 1px solid #ff7a00;
+    border-radius: 12px;
+
+    padding: 10px 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background: #ff7a00;
+    color: #111;
+
+    box-shadow: 0 10px 25px rgba(255, 122, 0, 0.35);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: translateY(0px);
+    box-shadow: none;
+}
+
+input,
+textarea {
+    padding: 10px 12px;
+
+    background: #1a1a1a;
+    color: #eaeaea;
+
+    border: 1px solid #333;
+    border-radius: 10px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #ff7a00;
+    box-shadow: 0 0 8px rgba(255, 122, 0, 0.4);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #777;
+}
+
+input:hover,
+textarea:hover {
+    border-color: #ff7a00;
+}
+
+.form input,
+.form button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,120,0,0.15),
+        rgba(255,120,0,0)
+    );
+
+    border-radius: 20px;
+    margin: 20px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: orange;
+}
+
+.hero p {
+    color: #bbb;
+    font-size: 20px;
+}
+
+.form {
+    width: 350px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 35px;
+
+    background: #181818;
+
+    border: 1px solid rgba(255,140,0,0.3);
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 20px rgba(255,140,0,0.15),
+        0 10px 30px rgba(0,0,0,0.4);
+}
+
+.form h2 {
+    text-align: center;
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.product {
+    width: 220px;
+    background: rgb(0, 0, 0);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 10px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.product:hover {
+    transform: translateY(-8px);
+    border-color: orange;
+
+    box-shadow:
+        0 0 15px rgba(255,140,0,0.4),
+        0 0 30px rgba(255,140,0,0.2);
+}
+
+.product-price {
+    color: #00ff88;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.product img {
+    width: 100%;
+    height: 200px;
+    object-fit: scale-down;
+    border-radius: 10px 10px 0 0;
+}
+
+.product h4 {
+    font-size: 16px;
+    margin: 0;
+    color: orange;
+}
+
+.product p {
+    margin: 0;
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.product button {
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+
+    background: #1e3c72;
+    color: white;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.product button:hover {
+    background: #2a5298;
+}
+
+#products,
+#cartItems,
+#myProducts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 30px;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    color: orange;
+}
+
+.modal {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    color: white;
+    width: 500px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid orange;
+    animation: popup 0.25s ease;
+}
+
+@keyframes popup {
+
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content img {
+
+    width: 100%;
+    height: 300px;
+
+    object-fit: contain;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: orange;
+    border-radius: 10px;
+}
+
+#loginPage,
+#registerPage {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,140,0,0.2),
+            transparent 50%
+        ),
+        #121212;
+}
+
+.auth-logo {
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    color: orange;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close {
+
+    float: right;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+* {
+    transition:
+        background 0.2s,
+        color 0.2s,
+        border-color 0.2s,
+        transform 0.2s;
+}
