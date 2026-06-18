@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FireStore</title>
+        <!-- Стиль -->
+        <link rel="stylesheet" href="style.css" />
+
+        <link rel="icon" type="image/png" href="images/icon.png">
+
+        <!-- Firebase SDK -->
+        <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    </head>
+<body>
+
+<!-- Страницы -->
+    <div id="loginPage" class="page">
+        <div class="auth-container">
+
+             <header class="navbar">
+                <div class="logo">
+                    <img src="images/icon.png" alt="icon">
+                    <span>FireMarket</span>
+                </div>
+
+            </header>
+
+            <div class="form">
+
+                <h2>Войти</h2>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Email">
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Пароль">
+
+                <button onclick="login()">
+                    Войти
+                </button>
+
+                <button onclick="enterAsGuest()">
+                    Продолжить как гость
+                </button>
+
+                <p>
+                    или
+                    <a href="#" onclick="showRegister()">
+                        Регистрация
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="registerPage" class="page" style="display:none;">
+        <div class="auth-container">
+
+            <header class="navbar">
+                <div class="logo">
+                    <img src="images/icon.png" alt="icon">
+                    <span>FireMarket</span>
+                </div>
+
+            </header>
+
+            <div class="form">
+
+                <h2>Регистрация</h2>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Имя">
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Email">
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Пароль">
+
+                <button onclick="register()">
+                    Зарегистрироваться
+                </button>
+
+                <p>
+                    или
+                    <a href="#" onclick="showLogin()">
+                        Войти
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="mainPage" class="page" style="display:none;">
+        <header class="navbar">
+
+            <div class="logo">
+                <img src="images/icon.png" alt="icon">
+                <span>FireMarket</span>
+            </div>
+
+            <nav>
+                <button onclick="showHome()">Главная</button>
+                <button onclick="showCart()">Корзина</button>
+                <button onclick="showStore()">Свой магазин</button>
+            </nav>
+
+            <div class="user-panel">
+                <div class="avatar" id="avatar">
+                    G
+                </div>
+                
+                <span id="userName">
+                    Гость
+                </span>
+
+                <button id="loginBtn"
+                        onclick="showLogin()">
+                    Войти
+                </button>
+
+                <button id="registerBtn"
+                        onclick="showRegister()">
+                    Регистрация
+                </button>
+
+                <button id="logoutBtn"
+                        onclick="logout()"
+                        style="display:none;">
+                    Выйти
+                </button>
+
+            </div>
+
+        </header>
+
+        <div id="homePage">
+            <h2>Каталог товаров</h2>
+
+            <div id="products"></div>
+
+            
+            <div class="hero">
+                <h1>FireMarket</h1>
+                <p>Лучшие товары по лучшим ценам</p>
+            </div>
+        </div>
+
+        <div id="cartPage" style="display:none;">
+            <h2>Корзина</h2>
+
+            <div id="cartItems"></div>
+
+            <button onclick="checkout()">
+                Оформить заказ
+            </button>
+        </div>
+
+        <div id="storePage" style="display:none;">
+
+            <h2>Свой магазин</h2>
+
+            <div id="guestStoreMessage" style="display:none;">
+                <h2>Свой магазин</h2>
+
+                <p>
+                    Для создания товаров необходимо
+                    войти в аккаунт.
+                </p>
+            </div>
+
+            <button
+                id="addProductBtn"
+                onclick="showAddProduct()">
+                Добавить товар
+            </button>
+
+            <div id="myProducts"></div>
+
+            <div id="addProductForm"
+                style="display:none; margin-top:20px;">
+
+                <h3>Добавить товар</h3>
+
+                <input type="text"
+                    id="newName"
+                    placeholder="Название">
+
+                <textarea
+                    id="newDescription"
+                    placeholder="Описание товара">
+                </textarea>
+
+                <input type="number"
+                    id="newPrice"
+                    placeholder="Цена">
+
+                <input type="text"
+                    id="newImageUrl"
+                    placeholder="URL изображения">
+
+                <button onclick="addProduct()">
+                    Добавить
+                </button>
+
+                <button onclick="hideAddProduct()">
+                    Отмена
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="productModal" class="modal" style="display:none;">
+
+        <div class="modal-content">
+
+            <span class="close"
+                onclick="closeProduct()">
+                ×
+            </span>
+
+            <img id="modalImage">
+
+            <h2 id="modalName"></h2>
+
+            <p id="modalPrice"></p>
+
+            <p id="modalDescription"></p>
+
+            <p id="modalSeller"></p>
+
+            <input
+                type="number"
+                id="modalQuantity"
+                min="1"
+                value="1">
+
+            <button onclick="addToCart()">
+                Добавить в корзину
+            </button>
+
+        </div>
+
+    </div>
+
+<script src="app.js"></script>
+</body>
+</html>
