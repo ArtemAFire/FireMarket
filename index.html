@@ -3,10 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>FireStore</title>
+        <title>FireMarket</title>
         <!-- Стиль -->
         <link rel="stylesheet" href="style.css" />
-
         <link rel="icon" type="image/png" href="images/icon.png">
 
         <!-- Firebase SDK -->
@@ -19,95 +18,49 @@
 <!-- Страницы -->
     <div id="loginPage" class="page">
         <div class="auth-container">
-
-             <header class="navbar">
-                <div class="logo">
-                    <img src="images/icon.png" alt="icon">
-                    <span>FireMarket</span>
-                </div>
-
-            </header>
-
-            <div class="form">
-
-                <h2>Войти</h2>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Email">
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Пароль">
-
-                <button onclick="login()">
-                    Войти
-                </button>
-
-                <button onclick="enterAsGuest()">
-                    Продолжить как гость
-                </button>
-
-                <p>
-                    или
-                    <a href="#" onclick="showRegister()">
-                        Регистрация
-                    </a>
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div id="registerPage" class="page" style="display:none;">
-        <div class="auth-container">
-
             <header class="navbar">
                 <div class="logo">
                     <img src="images/icon.png" alt="icon">
                     <span>FireMarket</span>
                 </div>
-
             </header>
-
             <div class="form">
+                <h2>Войти</h2>
+                <input type="email" id="loginEmail" placeholder="Email">
+                <input type="password" id="loginPassword" placeholder="Пароль">
+                <button onclick="login()">Войти</button>
 
+                <button onclick="enterAsGuest()">Продолжить как гость</button>
+                <p>или
+                    <a href="#" onclick="showRegister()">
+                        Регистрация
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="registerPage" class="page" style="display:none;">
+        <div class="auth-container">
+            <header class="navbar">
+                <div class="logo">
+                    <img src="images/icon.png" alt="icon">
+                    <span>FireMarket</span>
+                </div>
+            </header>
+            <div class="form">
                 <h2>Регистрация</h2>
-
-                <input
-                    type="text"
-                    id="registerName"
-                    placeholder="Имя">
-
-                <input
-                    type="email"
-                    id="registerEmail"
-                    placeholder="Email">
-
-                <input
-                    type="password"
-                    id="registerPassword"
-                    placeholder="Пароль">
-
-                <button onclick="register()">
-                    Зарегистрироваться
-                </button>
-
-                <p>
-                    или
+                <input type="text" id="registerName" placeholder="Имя">
+                <input type="email" id="registerEmail" placeholder="Email">
+                <input type="password" id="registerPassword" placeholder="Пароль">
+                <button onclick="register()">Зарегистрироваться</button>
+                <p>или
                     <a href="#" onclick="showLogin()">
                         Войти
                     </a>
                 </p>
-
             </div>
-
         </div>
-
     </div>
 
     <div id="mainPage" class="page" style="display:none;">
@@ -233,36 +186,73 @@
     </div>
 
     <div id="productModal" class="modal" style="display:none;">
-
         <div class="modal-content">
-
             <span class="close"
                 onclick="closeProduct()">
                 ×
             </span>
-
             <img id="modalImage">
-
             <h2 id="modalName"></h2>
-
             <p id="modalPrice"></p>
-
             <p id="modalDescription"></p>
-
             <p id="modalSeller"></p>
-
             <input
                 type="number"
                 id="modalQuantity"
                 min="1"
                 value="1">
-
             <button onclick="addToCart()">
                 Добавить в корзину
             </button>
-
         </div>
+    </div>
 
+    <div id="checkoutModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCheckout()">
+                ×
+            </span>
+            <h2>Оформление заказа</h2>
+            <input type="text"
+                id="fullName"
+                placeholder="ФИО">
+            <input type="email"
+                id="email"
+                placeholder="Электронная почта">
+            <input type="text"
+                id="phone"
+                placeholder="Телефон">
+            <h3>Адрес доставки</h3>
+            <input type="text"
+                id="city"
+                placeholder="Город">
+            <input type="text"
+                id="street"
+                placeholder="Улица">
+            <input type="text"
+                id="house"
+                placeholder="Дом">
+            <input type="text"
+                id="apartment"
+                placeholder="Квартира">
+            <input type="text"
+                id="postcode"
+                placeholder="Почтовый индекс">
+            <h3>Оплата</h3>
+
+            <input type="text"
+                id="cardNumber"
+                placeholder="Номер карты">
+            <input type="text"
+                id="cardDate"
+                placeholder="Срок действия">
+            <input type="text"
+                id="cardCVV"
+                placeholder="CVV">
+            <button onclick="confirmOrder()">
+                Подтвердить заказ
+            </button>
+        </div>
     </div>
 
 <script src="app.js"></script>

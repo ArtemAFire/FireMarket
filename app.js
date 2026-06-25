@@ -146,12 +146,10 @@ function addProduct() {
     const price = parseFloat(document.getElementById('newPrice').value);
     const imageUrl = document.getElementById('newImageUrl').value.trim();
     const description = document.getElementById("newDescription").value.trim();
-
     if (!name || isNaN(price) || !imageUrl) {
         alert('Поля заполнены некорректно');
         return;
     }
-
     db.collection('products').add({
 
         name: name,
@@ -182,25 +180,20 @@ function loadProducts() {
                 const product = doc.data();
                 const div = document.createElement('div');
                 div.className = 'product';
-
                 div.innerHTML = `
                     <h4>${product.name}</h4>
-
                     <img src="${product.imageUrl}"
                         alt="${product.name}"/>
 
                     <p class="price">${product.price} ₽</p>
-
                     <p>
                         Продавец:
                         ${product.ownerName || "Неизвестно"}
                     </p>
                 `;
-
                 div.onclick = () => {
                     openProduct(product);
                 };
-
                 container.appendChild(div);
             });
         })
@@ -299,17 +292,14 @@ function closeProduct() {
 }
 
 function addToCart() {
-
     const quantity =
         parseInt(
             document.getElementById("modalQuantity").value
         );
-
     const existingItem =
         cart.find(
             item => item.name === currentProduct.name
         );
-
     if(existingItem) {
 
         existingItem.quantity += quantity;
@@ -323,33 +313,25 @@ function addToCart() {
             quantity: quantity
         });
     }
-
     alert("Товар добавлен в корзину!");
 
     closeProduct();
 }
 
 function loadCart() {
-
     const container =
         document.getElementById("cartItems");
-
     container.innerHTML = "";
-
     let total = 0;
-
     cart.forEach((item, index) => {
-
         const itemTotal =
             item.price * item.quantity;
-
         total += itemTotal;
 
         const div =
             document.createElement("div");
 
         div.className = "product";
-
         div.innerHTML = `
             <img src="${item.imageUrl}">
             <h4>${item.name}</h4>
@@ -357,19 +339,14 @@ function loadCart() {
             <p>Цена: ${itemTotal} руб.</p>
         `;
 
-        const removeBtn =
-            document.createElement("button");
-
-        removeBtn.textContent =
-            "Удалить";
-
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Удалить";
         removeBtn.onclick = () => {
 
             cart.splice(index, 1);
 
             loadCart();
         };
-
         div.appendChild(removeBtn);
 
         container.appendChild(div);
@@ -385,19 +362,40 @@ function loadCart() {
 }
 
 function checkout() {
-
     if(cart.length === 0) {
-
         alert("Корзина пуста");
 
         return;
     }
+    document.getElementById("checkoutModal")
+        .style.display = "flex";
+}
 
-    alert("Платёж успешно выполнен!");
+function closeCheckout() {
+
+    document.getElementById("checkoutModal")
+        .style.display = "none";
+}
+
+function confirmOrder() {
+
+    const fullName =
+        document.getElementById("fullName").value;
+
+    const city =
+        document.getElementById("city").value;
+
+    alert(
+        "Заказ оформлен!\n\n" +
+        "Получатель: " + fullName + "\n" +
+        "Город: " + city
+    );
 
     cart = [];
 
     loadCart();
+
+    closeCheckout();
 }
 
 function showLogin() {
